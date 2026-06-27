@@ -13,14 +13,11 @@ NexChat est une base d'application de messagerie inspirée de WhatsApp, pensée 
 
 ## Variables d'environnement
 
+Copier `.env.example` vers `.env`, puis coller la clé Groq dans `GROQ_API_KEY`. Le fichier `.env` est ignoré par Git pour ne pas publier la clé.
+
 ```bash
-NEXCHAT_DB_HOST=localhost
-NEXCHAT_DB_NAME=nexchat_index
-NEXCHAT_DB_USER=...
-NEXCHAT_DB_PASS=...
-NEXCHAT_JWT_SECRET=une-longue-valeur-secrete
-GROQ_API_KEY=gsk_...
-GROQ_MODEL=llama-3.1-70b-versatile
+cp .env.example .env
+# puis modifier GROQ_API_KEY=...
 ```
 
 ## Démarrage local rapide
