@@ -4,11 +4,12 @@ NexChat est une base d'application de messagerie inspirée de WhatsApp, pensée 
 
 ## Structure
 
-- `public/` : application web/PWA à déposer sur le site.
+- `index.html`, `assets/`, `manifest.webmanifest` : application web/PWA à déposer directement à la racine du `www/` Alwaysdata.
 - `php/api/` : endpoints PHP JSON pour auth, messages, IA et PeerJS.
 - `php/config/config.php` : configuration par variables d'environnement.
 - `database/schema.sql` : schéma MySQL de la base `nexchat_index`.
 - `docs/deployment.md` : notes de déploiement Alwaysdata.
+- `capacitor.config.json` et `package.json` : préparation APK Android via Capacitor.
 
 ## Variables d'environnement
 
@@ -32,7 +33,7 @@ GROQ_MODEL=llama-3.1-70b-versatile
 php -S localhost:8080
 ```
 
-4. Ouvrir `http://localhost:8080/public/`.
+4. Ouvrir `http://localhost:8080/`.
 
 ## Idées NexIA à poursuivre
 
@@ -41,3 +42,7 @@ php -S localhost:8080
 - Traduction instantanée.
 - Détection de messages urgents.
 - Mémoire personnelle contrôlée par l'utilisateur dans `ai_memories`.
+
+## APK Android
+
+Le dossier `public/` a été supprimé: la web app vit à la racine pour Alwaysdata. Pour préparer Android sans compiler ici, utilisez `npm install`, `npm run apk:init`, puis `npm run apk:sync`. Voir `docs/apk.md`.

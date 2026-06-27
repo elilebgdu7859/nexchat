@@ -1,0 +1,8 @@
+{
+  "appId": "net.alwaysdata.nexchat.app",
+  "appName": "NexChat",
+  "webDir": ".",
+  "server": {
+    "androidScheme": "https"
+  }
+}

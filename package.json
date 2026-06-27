@@ -1,0 +1,17 @@
+{
+  "name": "nexchat",
+  "version": "0.2.0",
+  "private": true,
+  "description": "NexChat PWA et base APK Capacitor.",
+  "scripts": {
+    "serve": "php -S localhost:8080",
+    "apk:init": "npx cap add android",
+    "apk:sync": "npx cap sync android",
+    "apk:open": "npx cap open android"
+  },
+  "devDependencies": {
+    "@capacitor/android": "latest",
+    "@capacitor/cli": "latest",
+    "@capacitor/core": "latest"
+  }
+}

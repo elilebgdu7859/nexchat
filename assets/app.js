@@ -1,4 +1,4 @@
-const API = '../php/api/';
+const API = localStorage.nexchat_api_base || (location.protocol === 'file:' || location.hostname === '' ? 'https://nexchat.alwaysdata.net/php/api/' : 'php/api/');
 const state = { token: localStorage.nexchat_token || '', user: null, conversationId: null, peer: null };
 const $ = id => document.getElementById(id);
 const call = async (path, body, method = 'POST') => {
