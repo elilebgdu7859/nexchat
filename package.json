@@ -5,10 +5,11 @@
   "description": "NexChat PWA et base APK Capacitor.",
   "scripts": {
     "serve": "php -S localhost:8080",
-    "apk:init": "npx cap add android",
-    "apk:sync": "npx cap sync android",
+    "apk:init": "npm run apk:prepare-web && npx cap add android",
+    "apk:sync": "npm run apk:prepare-web && npx cap sync android",
     "apk:open": "npx cap open android",
-    "apk:debug": "bash apk/build-debug.sh"
+    "apk:debug": "bash apk/build-debug.sh",
+    "apk:prepare-web": "bash scripts/prepare-capacitor-web.sh"
   },
   "devDependencies": {
     "@capacitor/android": "latest",
