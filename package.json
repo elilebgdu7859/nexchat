@@ -7,7 +7,8 @@
     "serve": "php -S localhost:8080",
     "apk:init": "npx cap add android",
     "apk:sync": "npx cap sync android",
-    "apk:open": "npx cap open android"
+    "apk:open": "npx cap open android",
+    "apk:debug": "bash apk/build-debug.sh"
   },
   "devDependencies": {
     "@capacitor/android": "latest",

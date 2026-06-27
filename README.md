@@ -20,6 +20,11 @@ cp .env.example .env
 # puis modifier GROQ_API_KEY=...
 ```
 
+
+## Clé Groq intégrée localement
+
+La clé Groq fournie a été placée dans le fichier local `.env` ignoré par Git. Elle sera lue automatiquement par `php/config/config.php` en local ou sur Alwaysdata si le même fichier est déposé côté serveur. Pour des raisons de sécurité, la clé réelle n'est pas commité dans le dépôt.
+
 ## Démarrage local rapide
 
 1. Importer `database/schema.sql` dans MySQL.
