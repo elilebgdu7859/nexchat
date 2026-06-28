@@ -48,3 +48,7 @@ php -S localhost:8080
 ## APK Android
 
 Le dossier `public/` a été supprimé: la web app vit à la racine pour Alwaysdata. Pour préparer Android sans compiler ici, utilisez `npm install`, `npm run apk:init`, puis `npm run apk:sync`. Voir `docs/apk.md`.
+
+## APK via GitHub Actions
+
+Le workflow `.github/workflows/android-apk.yml` construit un APK debug utilisable et l'envoie en artefact nommé `NexChat-debug.apk`. Après avoir poussé cette branche sur GitHub, va dans **Actions → Build NexChat Android APK → dernier run vert → Artifacts** pour télécharger l'APK. Voir `docs/github-actions-apk.md`.

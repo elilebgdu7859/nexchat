@@ -2,16 +2,12 @@ name: Build NexChat Android APK
 
 on:
   push:
-    branches:
-      - nexchat-apk
   pull_request:
-    branches:
-      - nexchat-apk
   workflow_dispatch:
 
 jobs:
   build-debug-apk:
-    name: Build debug APK
+    name: Build APK utilisable
     runs-on: ubuntu-latest
 
     steps:
@@ -46,8 +42,14 @@ jobs:
           cd android
           ./gradlew assembleDebug
 
-      - name: Upload debug APK
+      - name: Rename APK for download
+        run: |
+          mkdir -p release-apk
+          cp android/app/build/outputs/apk/debug/app-debug.apk release-apk/NexChat-debug.apk
+
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nexchat-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: NexChat-debug.apk
+          path: release-apk/NexChat-debug.apk
+          if-no-files-found: error
