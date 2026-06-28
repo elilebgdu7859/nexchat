@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-npm install
+npm install --no-audit --no-fund
 npm run apk:prepare-web
 if [ ! -d android ]; then
   npx cap add android
