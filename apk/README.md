@@ -30,3 +30,8 @@ L'APK utilise l'API distante `https://nexchat.alwaysdata.net/php/api/` quand l'a
 Le workflow `.github/workflows/android-apk.yml` construit automatiquement un APK debug quand la branche `nexchat-apk` est poussée ou lancée manuellement. L'artefact s'appelle `nexchat-debug-apk`.
 
 Le build prépare d'abord `mobile-web/` avec seulement les fichiers web nécessaires, puis génère le projet Android Capacitor et exécute `./gradlew assembleDebug`.
+
+
+## Java 21
+
+Le build APK utilise maintenant Java 21, car Capacitor Android compile avec `source release: 21`.
