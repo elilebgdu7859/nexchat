@@ -24,3 +24,8 @@ Si tu ne vois pas l'onglet Actions ou le bouton **Run workflow**, il faut d'abor
 ## Correction build
 
 Le build utilise Node.js 24 et des versions Capacitor épinglées (`8.4.0`) pour éviter que GitHub Actions installe une version `latest` incompatible ou changeante. Si un run échoue, ouvre le run puis l'étape rouge pour voir le message exact.
+
+
+## Correction Android SDK
+
+Le workflow installe maintenant explicitement le SDK Android, la plateforme `android-35` et `build-tools;35.0.0` avant Gradle. Ça évite les erreurs GitHub Actions du type SDK introuvable, licence Android non acceptée ou build tools manquants.

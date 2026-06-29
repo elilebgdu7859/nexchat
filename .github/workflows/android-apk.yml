@@ -9,6 +9,7 @@ jobs:
   build-debug-apk:
     name: Build APK utilisable
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -24,6 +25,14 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK packages
+        run: |
+          sdkmanager --install "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+          yes | sdkmanager --licenses >/dev/null
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
@@ -50,7 +59,8 @@ jobs:
       - name: Build debug APK
         run: |
           cd android
-          ./gradlew assembleDebug
+          chmod +x ./gradlew
+          ./gradlew --no-daemon assembleDebug --stacktrace
 
       - name: Rename APK for download
         run: |
