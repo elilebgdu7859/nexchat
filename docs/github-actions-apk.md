@@ -23,4 +23,4 @@ Si tu ne vois pas l'onglet Actions ou le bouton **Run workflow**, il faut d'abor
 
 ## Correction build
 
-Le build utilise Node.js 24 et des versions Capacitor épinglées (`8.4.1`) pour éviter que GitHub Actions installe une version `latest` incompatible ou changeante. Si un run échoue, ouvre le run puis l'étape rouge pour voir le message exact.
+Le build utilise Node.js 24 et des versions Capacitor épinglées (`8.4.0`) pour éviter que GitHub Actions installe une version `latest` incompatible ou changeante. Si un run échoue, ouvre le run puis l'étape rouge pour voir le message exact.
