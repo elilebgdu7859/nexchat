@@ -1,0 +1,75 @@
+name: Build NexChat Android APK
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-debug-apk:
+    name: Build APK utilisable
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK packages
+        run: |
+          sdkmanager --install "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+          yes | sdkmanager --licenses >/dev/null
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Print build tool versions
+        run: |
+          node --version
+          npm --version
+          npx cap --version
+
+      - name: Prepare Capacitor web assets
+        run: npm run apk:prepare-web
+
+      - name: Create Android project
+        run: npx cap add android
+        env:
+          CI: true
+
+      - name: Sync Android project
+        run: npx cap sync android
+        env:
+          CI: true
+
+      - name: Build debug APK
+        run: |
+          cd android
+          chmod +x ./gradlew
+          ./gradlew --no-daemon assembleDebug --stacktrace
+
+      - name: Rename APK for download
+        run: |
+          mkdir -p release-apk
+          cp android/app/build/outputs/apk/debug/app-debug.apk release-apk/NexChat-debug.apk
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NexChat-debug.apk
+          path: release-apk/NexChat-debug.apk
+          if-no-files-found: error

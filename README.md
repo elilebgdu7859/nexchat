@@ -1,0 +1,54 @@
+# NexChat
+
+NexChat est une base d'application de messagerie inspirée de WhatsApp, pensée pour le web mobile/PWA plutôt qu'un APK compilé. Elle inclut des comptes, des conversations stockées dans MySQL (`nexchat_index`), une interface responsive, un backend PHP et une intégration Groq pour l'assistant NexIA.
+
+## Structure
+
+- `index.html`, `assets/`, `manifest.webmanifest` : application web/PWA à déposer directement à la racine du `www/` Alwaysdata.
+- `php/api/` : endpoints PHP JSON pour auth, messages, IA et PeerJS.
+- `php/config/config.php` : configuration par variables d'environnement.
+- `database/schema.sql` : schéma MySQL de la base `nexchat_index`.
+- `docs/deployment.md` : notes de déploiement Alwaysdata.
+- `capacitor.config.json` et `package.json` : préparation APK Android via Capacitor.
+
+## Variables d'environnement
+
+Copier `.env.example` vers `.env`, puis coller la clé Groq dans `GROQ_API_KEY`. Le fichier `.env` est ignoré par Git pour ne pas publier la clé.
+
+```bash
+cp .env.example .env
+# puis modifier GROQ_API_KEY=...
+```
+
+
+## Clé Groq intégrée localement
+
+La clé Groq fournie a été placée dans le fichier local `.env` ignoré par Git. Elle sera lue automatiquement par `php/config/config.php` en local ou sur Alwaysdata si le même fichier est déposé côté serveur. Pour des raisons de sécurité, la clé réelle n'est pas commité dans le dépôt.
+
+## Démarrage local rapide
+
+1. Importer `database/schema.sql` dans MySQL.
+2. Configurer les variables d'environnement ou modifier temporairement `php/config/config.php`.
+3. Lancer un serveur PHP depuis la racine :
+
+```bash
+php -S localhost:8080
+```
+
+4. Ouvrir `http://localhost:8080/`.
+
+## Idées NexIA à poursuivre
+
+- Résumés automatiques de discussions longues.
+- Réponses suggérées selon le ton du contact.
+- Traduction instantanée.
+- Détection de messages urgents.
+- Mémoire personnelle contrôlée par l'utilisateur dans `ai_memories`.
+
+## APK Android
+
+Le dossier `public/` a été supprimé: la web app vit à la racine pour Alwaysdata. Pour préparer Android sans compiler ici, utilisez `npm install`, `npm run apk:init`, puis `npm run apk:sync`. Voir `docs/apk.md`.
+
+## APK via GitHub Actions
+
+Le workflow `.github/workflows/android-apk.yml` construit un APK debug utilisable et l'envoie en artefact nommé `NexChat-debug.apk`. Après avoir poussé cette branche sur GitHub, va dans **Actions → Build NexChat Android APK → dernier run vert → Artifacts** pour télécharger l'APK. Voir `docs/github-actions-apk.md`.

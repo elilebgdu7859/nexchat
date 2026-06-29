@@ -1,0 +1,7 @@
+.env
+php/.env
+node_modules/
+android/
+dist/
+.DS_Store
+mobile-web/

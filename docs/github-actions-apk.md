@@ -1,0 +1,36 @@
+# Télécharger l'APK depuis GitHub Actions
+
+Quand cette branche est poussée sur GitHub, le workflow **Build NexChat Android APK** se lance automatiquement grâce à `.github/workflows/android-apk.yml`.
+
+## Où cliquer sur GitHub
+
+1. Ouvre le dépôt GitHub `elilebgdu7859/nexchat`.
+2. Clique sur l'onglet **Actions** en haut du dépôt, pas seulement sur la page des commits.
+3. Clique sur **Build NexChat Android APK**.
+4. Ouvre le dernier run vert.
+5. Descends dans **Artifacts**.
+6. Télécharge **NexChat-debug.apk**.
+7. Sur Android, autorise l'installation depuis le navigateur/fichier si demandé, puis installe l'APK.
+
+## Lancer manuellement
+
+Dans **Actions → Build NexChat Android APK**, clique **Run workflow**. Choisis la branche qui contient ce fichier, puis valide. Le workflow peut aussi se lancer à chaque `push` et sur chaque pull request.
+
+## Important
+
+Si tu ne vois pas l'onglet Actions ou le bouton **Run workflow**, il faut d'abord pousser/merger cette branche sur GitHub avec le dossier `.github/workflows/`. GitHub n'affiche pas un workflow qui n'existe pas encore sur la branche distante.
+
+
+## Correction build
+
+Le build utilise Node.js 24 et des versions Capacitor épinglées (`8.4.0`) pour éviter que GitHub Actions installe une version `latest` incompatible ou changeante. Si un run échoue, ouvre le run puis l'étape rouge pour voir le message exact.
+
+
+## Correction Android SDK
+
+Le workflow installe maintenant explicitement le SDK Android, la plateforme `android-35` et `build-tools;35.0.0` avant Gradle. Ça évite les erreurs GitHub Actions du type SDK introuvable, licence Android non acceptée ou build tools manquants.
+
+
+## Java 21
+
+Le build APK utilise maintenant Java 21, car Capacitor Android compile avec `source release: 21`.

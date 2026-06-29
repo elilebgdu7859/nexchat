@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101828">
+  <title>NexChat</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="logo">N</span><div><b>NexChat</b><small>messagerie augmentée par IA</small></div></div>
+      <section id="auth" class="card">
+        <input id="login" placeholder="email ou pseudo">
+        <input id="password" type="password" placeholder="mot de passe">
+        <button id="loginBtn">Connexion</button>
+        <details><summary>Créer un compte</summary>
+          <input id="username" placeholder="pseudo">
+          <input id="displayName" placeholder="nom affiché">
+          <input id="email" type="email" placeholder="email">
+          <button id="registerBtn">Créer mon compte</button>
+        </details>
+      </section>
+      <section id="appNav" class="hidden">
+        <div class="search"><input id="contactSearch" placeholder="chercher un contact"><button id="searchBtn">+</button></div>
+        <div id="contacts" class="list"></div>
+        <h3>Discussions</h3><div id="conversations" class="list"></div>
+      </section>
+    </aside>
+    <section class="chat">
+      <header><div><b id="roomTitle">Bienvenue</b><small id="presence">Connecte-toi pour commencer</small></div><button id="callBtn">Appel sécurisé</button></header>
+      <div id="messages" class="messages"><div class="hero"><h1>WhatsApp, mais avec NexIA.</h1><p>Comptes, messages MySQL, PWA mobile, appels PeerJS sécurisés et assistant Groq pour résumer, traduire et proposer des réponses.</p></div></div>
+      <form id="composer"><button type="button" id="aiBtn">✨ NexIA</button><input id="messageInput" placeholder="Écris un message..."><button>Envoyer</button></form>
+    </section>
+    <aside class="ai-panel"><h2>NexIA</h2><p>L'IA peut résumer un fil, générer une réponse, traduire ou transformer un vocal en plan d'action.</p><textarea id="aiPrompt" placeholder="Demande à NexIA..."></textarea><button id="askAiBtn">Demander</button><div id="aiAnswer"></div></aside>
+  </main>
+  <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
